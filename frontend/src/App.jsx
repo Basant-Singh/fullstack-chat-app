@@ -35,6 +35,9 @@ const router = createBrowserRouter([
         {
           path:'/settings',
           element: <Settings/>,
+        },{
+          path:'*',
+          element: <Homepage/>,
         }
 
     ]

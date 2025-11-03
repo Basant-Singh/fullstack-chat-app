@@ -15,8 +15,8 @@ export const useMessageStore = create((set,get)=>({
             console.log(error.message)
         }
     },
-    setSelectedUser: (userId)=>{
-        set({selectedUser: userId});
+    setSelectedUser: (user)=>{
+        set({selectedUser: user});
         const {getMessages, selectedUser} = get();
         getMessages(selectedUser?._id);
     },
