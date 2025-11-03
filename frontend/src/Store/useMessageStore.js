@@ -47,7 +47,7 @@ export const useMessageStore = create((set,get)=>({
         
         socket.on("newMessage",(message)=>{
             const selectedUser = get().selectedUser;
-            if(message.senderId !== selectedUser) return;
+            if(message.senderId !== selectedUser._id) return;
             set({messages: [...get().messages, message]});
         })
     },
