@@ -41,7 +41,8 @@ const Navbar = ()=>{
                         <li>
                         {
                             (path !== "login" && path !== "signup") &&
-                            <button className="btn btn-error" onClick={handleLogoutClick}>
+                            <button className={`btn ${authUser? "btn-error": "btn-primary"}`}
+                            onClick={handleLogoutClick}>
                                 <LogOut className="size-4"/>
                             {authUser? "Logout": "Sign in"}</button>
                         }
@@ -63,7 +64,8 @@ const Navbar = ()=>{
                     Profile</button>}
                     {
                         (path !== "login" && path !== "signup") &&
-                            <button className="btn rounded-xl ml-2 hidden lg:flex btn-error" onClick={handleLogoutClick}>
+                            <button className={`btn rounded-xl ml-2 hidden lg:flex ${authUser? "btn-error": "btn-primary"}`}
+                            onClick={handleLogoutClick}>
                                 <LogOut className="size-4"/>
                             {authUser? "Logout": "Sign in"}</button>
                     }
