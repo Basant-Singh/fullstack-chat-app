@@ -1,14 +1,14 @@
 import { Image, Send, X } from "lucide-react";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { useMessageStore } from "../Store/useMessageStore";
+import { useMessageStore} from "../Store/useMessageStore";
 
 const MessageInput = ()=>{
 
     const fileInputRef = useRef(null);
     const [text, setText] = useState("");
     const [imagePreview, setImagePreview] = useState(null);
-    const {sendMessage} = useMessageStore();
+    const {sendMessage, isSendingMessage} = useMessageStore();
 
     const handleSendMessage = async (e)=>{
         e.preventDefault();
@@ -84,6 +84,7 @@ const MessageInput = ()=>{
             placeholder="Type a message..."
             value={text}
             onChange={(e) => setText(e.target.value)}
+            disabled={isSendingMessage}
           />
           <input
             type="file"
@@ -91,11 +92,12 @@ const MessageInput = ()=>{
             className="hidden"
             ref={fileInputRef}
             onChange={handleFileChange}
+            disabled={isSendingMessage}
           />
 
           <button
             type="button"
-            className="hidden sm:flex btn btn-circle text-emerald-500"
+            className="flex btn btn-circle text-emerald-500"
             onClick={()=> fileInputRef?.current.click()}
           >
             <Image size={20} />
@@ -104,7 +106,7 @@ const MessageInput = ()=>{
         <button
           type="submit"
           className="btn btn-sm btn-circle"
-          disabled={!text.trim() && !imagePreview}
+          disabled={isSendingMessage || (!text.trim() && !imagePreview)}
         >
           <Send size={22} />
         </button>

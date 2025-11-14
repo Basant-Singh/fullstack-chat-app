@@ -4,12 +4,12 @@ import { useAuthStore } from "../Store/useAuthStore";
 import { useMessageStore } from "../Store/useMessageStore";
 import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
+import MessageSkeleton from "./skeletons/MessageSkeleton";
 
 
 const ChatContainer = ()=>{
 
-    const {subscribeToMessages, unsubscribeFromMessages} = useMessageStore();
-    const {selectedUser, messages} = useMessageStore();
+    const {subscribeToMessages, unsubscribeFromMessages, selectedUser, messages, isChatLoading} = useMessageStore();
     const msgEndRef = useRef(null);
   
     const {authUser} = useAuthStore();
@@ -24,6 +24,17 @@ const ChatContainer = ()=>{
       if(msgEndRef.current && messages)  msgEndRef.current.scrollIntoView({behavior: "smooth"})
     },[messages])
 
+    if(isChatLoading){
+      return (
+              <div className="flex-1 flex flex-col overflow-auto">
+      <ChatHeader />
+
+        <MessageSkeleton/>
+
+      <MessageInput />
+    </div>
+      )
+    }
 
     return(
 

@@ -34,7 +34,7 @@ const Homepage = ()=>{
 
     return (
     <div className="min-h-full grow bg-base-200 overflow-hidden">
-      <div className="flex items-center justify-center px-4 pt-10">
+      <div className="flex items-center justify-center xl:px-4 xl:pt-10">
         <div className="bg-base-100 rounded-lg shadow-cl w-full max-w-6xl h-[calc(100vh-8rem)]">
           <div className="flex h-full rounded-lg overflow-hidden">
             <Sidebar />
